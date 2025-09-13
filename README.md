@@ -118,7 +118,6 @@ High-level steps:
 Relevant crates (from `Cargo.toml`):
 - `ffmpeg-next` – media IO and processing
 - `opencv` – optional image processing / analysis helpers
-- `image` – basic image manipulation utilities
 - `hound` – WAV IO utilities (helpful for audio debugging)
 - `clap`, `log`, `env_logger`, `anyhow`, `serde`, `serde_json`
 
