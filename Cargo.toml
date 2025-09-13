@@ -2,6 +2,15 @@
 name = "autoclip"
 version = "0.1.0"
 edition = "2024"
+authors = ["Alexandre Trotel <trotelalexandre@proton.me>"]
+description = "Automatic video editor that trims blank/silent segments and highlights best moments"
+license = "MIT"
+repository = "https://github.com/alexandretrotel/autoclip"
+
+[profile.release]
+opt-level = 3        # Maximum optimization for fastest runtime
+lto = true           # Link Time Optimization: optimize across crates
+codegen-units = 1    # Single codegen unit for better global optimizations
 
 [dependencies]
 anyhow = "1.0.99"
@@ -12,6 +21,6 @@ hound = "3.5.1"
 image = "0.25.8"
 log = "0.4.28"
 opencv = "0.95.1"
-serde = "1.0.219"
+serde = { version = "1.0.219", features = ["derive"] }
 serde_json = "1.0.143"
 tch = "0.20.0"
