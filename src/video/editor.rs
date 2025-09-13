@@ -1,4 +1,4 @@
-pub fn create_final_video(original_path: &str, clips: &Vec<(usize, f32)>) -> anyhow::Result<()> {
+pub fn create_final_video(_original_path: &str, _clips: &Vec<(usize, f32)>) -> anyhow::Result<()> {
     // TODO: Use ffmpeg-next to trim & concatenate clips
     Ok(())
 }
