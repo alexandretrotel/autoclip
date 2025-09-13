@@ -20,7 +20,6 @@ ffmpeg-next = "8.0.0"
 hound = "3.5.1"
 image = "0.25.8"
 log = "0.4.28"
-opencv = "0.95.1"
+opencv = { version = "0.95.1", features = ["clang-runtime"] }
 serde = { version = "1.0.219", features = ["derive"] }
 serde_json = "1.0.143"
-tch = "0.20.0"

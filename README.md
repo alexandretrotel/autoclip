@@ -5,7 +5,7 @@ Automatic video editor that trims blank/silent segments and highlights the best 
 This is an **experimental** Rust tool that:
 - extracts frames and audio from a video
 - detects empty frames and silent audio regions
-- (planned) scores segments using a small ML model via `tch`
+- scores segments using a small ML model
 - stitches the best segments into a concise final cut
 
 
@@ -15,14 +15,14 @@ The project scaffolding, CLI, and processing pipeline are in place, but most hea
 - Frame extraction (ffmpeg)
 - Audio loading and silence detection
 - Video analysis (empty frames)
-- ML scoring (tch / TorchScript)
+- ML scoring
 - Final editing (trim/concat)
 
 You can build and run the CLI, but actual processing is not yet implemented. It will come soon however :)
 
 ## Requirements
 
-AutoClip is a Rust project with native dependencies for media processing, including OpenCV and LibTorch (via `tch`).
+AutoClip is a Rust project with native dependencies for media processing, including OpenCV.
 
 - Rust (stable) with Cargo
 - macOS, Linux, or Windows (macOS tested first)
@@ -37,25 +37,13 @@ brew install ffmpeg opencv
 
 Notes:
 - The `ffmpeg-next` crate links against system FFmpeg; having Homebrew FFmpeg usually works out of the box.
-- The `opencv` crate requires a system OpenCV. If build can’t find it, set `PKG_CONFIG_PATH` or `OPENCV_LINK_PATH` as needed. Example:
-
-```bash
-export PKG_CONFIG_PATH="/opt/homebrew/opt/opencv/lib/pkgconfig:$PKG_CONFIG_PATH"
-```
-
-- The `tch` crate will download LibTorch automatically during build in most cases. If you have a custom setup, see the `tch` crate docs for environment variables.
+- The `opencv` crate requires a system OpenCV. See [installation guide](https://github.com/twistedfall/opencv-rust/blob/master/INSTALL.md).
 
 
 ## Build
 
 ```bash
 cargo build --release
-```
-
-Optional verbose logs during development:
-
-```bash
-RUST_LOG=info cargo run -- help
 ```
 
 
@@ -132,7 +120,6 @@ Relevant crates (from `Cargo.toml`):
 - `opencv` – optional image processing / analysis helpers
 - `image` – basic image manipulation utilities
 - `hound` – WAV IO utilities (helpful for audio debugging)
-- `tch` – LibTorch bindings for running TorchScript models
 - `clap`, `log`, `env_logger`, `anyhow`, `serde`, `serde_json`
 
 
@@ -140,19 +127,12 @@ Relevant crates (from `Cargo.toml`):
 
 - OpenCV not found at build time
 	- Ensure OpenCV is installed. On macOS with Apple Silicon:
-		```bash
-		brew install opencv
-		export PKG_CONFIG_PATH="/opt/homebrew/opt/opencv/lib/pkgconfig:$PKG_CONFIG_PATH"
-		```
 
 - FFmpeg link errors
 	- Ensure FFmpeg is installed and headers/libs are visible to the linker. On macOS with Homebrew this is typically automatic.
 
-- LibTorch download or linking issues (`tch`)
-	- Consult the `tch` crate README for env vars if you provide a custom LibTorch.
-
 
 ## License
 
-MIT. If you contribute, you agree your contributions will be licensed under the MIT License.
+MIT.
 
