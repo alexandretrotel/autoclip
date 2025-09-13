@@ -1,7 +1,7 @@
 use clap::Parser;
 
-#[derive(Parser)]
-#[command(author, version, about = "AutoClip", long_about = None)]
+#[derive(Parser, Debug)]
+#[command(author, version, about, long_about = None)]
 pub struct Cli {
     /// Input video file
     pub input: String,
