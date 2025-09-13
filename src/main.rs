@@ -15,15 +15,15 @@ fn main() -> anyhow::Result<()> {
     info!("Starting video processing for input: {}", args.input);
 
     // Load configuration
-    let _cfg = config::load_config(&args.config)?;
+    let cfg = config::load_config(&args.config)?;
 
     // Extract frames & audio
-    let frames = video::extractor::extract_frames(&args.input)?;
-    let audio = audio::analyzer::load_audio(&args.input)?;
+    let frames = video::extractor::extract_frames(&args.input, &cfg)?;
+    let audio = audio::analyzer::load_audio(&args.input, &cfg)?;
 
     // Detect empty/silent parts
-    let _empty_frames = video::analyzer::detect_empty_frames(&frames)?;
-    let _silent_parts = audio::analyzer::detect_silence(&audio)?;
+    let _empty_frames = video::analyzer::detect_empty_frames(&frames, &cfg)?;
+    let _silent_parts = audio::analyzer::detect_silence(&audio, &cfg)?;
 
     // Score clips using ML
     let scored_clips = ml::inference::score_clips(&frames, &audio)?;
