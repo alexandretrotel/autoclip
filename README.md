@@ -133,5 +133,4 @@ Relevant crates (from `Cargo.toml`):
 
 ## License
 
-MIT.
-
+MIT
