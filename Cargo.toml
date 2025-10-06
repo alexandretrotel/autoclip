@@ -11,11 +11,6 @@ repository = "https://github.com/alexandretrotel/autoclip"
 name = "autoclip"
 path = "src/main.rs"
 
-[profile.release]
-opt-level = 3        # Maximum optimization for fastest runtime
-lto = true           # Link Time Optimization: optimize across crates
-codegen-units = 1    # Single codegen unit for better global optimizations
-
 [dependencies]
 anyhow = "1.0.99"
 clap = { version = "4.5.47", features = ["derive"] }
